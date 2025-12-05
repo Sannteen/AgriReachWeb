@@ -11,9 +11,17 @@ public partial class Product
 
     public string Unit { get; set; } = null!;
 
-    public string Category { get; set; } = null!;
+    public int ProductCategoryId { get; set; }
 
-    public virtual ICollection<Produce> Produces { get; set; } = new List<Produce>();
+    public decimal Price { get; set; }
+
+    public virtual ICollection<FarmProduct> FarmProducts { get; set; } = new List<FarmProduct>();
+
+    public virtual ICollection<Product> InverseProductCategory { get; set; } = new List<Product>();
+
+    public virtual Product ProductCategory { get; set; } = null!;
+
+    public virtual ProductCategory ProductNavigation { get; set; } = null!;
 
     public virtual ICollection<ShoppingListItem> ShoppingListItems { get; set; } = new List<ShoppingListItem>();
 }

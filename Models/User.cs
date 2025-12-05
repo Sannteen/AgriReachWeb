@@ -21,8 +21,6 @@ public partial class User
 
     public DateTime? DateCreated { get; set; }
 
-    public virtual ICollection<Farm> Farms { get; set; } = new List<Farm>();
-
     public virtual ICollection<Message> MessageReceivers { get; set; } = new List<Message>();
 
     public virtual ICollection<Message> MessageSenders { get; set; } = new List<Message>();

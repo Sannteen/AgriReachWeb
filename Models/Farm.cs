@@ -11,17 +11,17 @@ public partial class Farm
 
     public string FarmName { get; set; } = null!;
 
-    public string Parish { get; set; } = null!;
-
     public string? Address { get; set; }
 
     public string? Description { get; set; }
 
     public DateTime? DateRegistered { get; set; }
 
-    public virtual ICollection<Produce> Produces { get; set; } = new List<Produce>();
+    public int AreaId { get; set; }
+
+    public virtual Area Area { get; set; } = null!;
+
+    public virtual ICollection<FarmProduct> FarmProducts { get; set; } = new List<FarmProduct>();
 
     public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
-
-    public virtual User User { get; set; } = null!;
 }

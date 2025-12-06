@@ -19,6 +19,12 @@ public partial class Farm
 
     public int AreaId { get; set; }
 
+    public string Parish { get; set; } = null!;
+
+    public string Produces { get; set; } = null!;
+
+    public string Product { get; set; } = null!;
+
     public virtual Area Area { get; set; } = null!;
 
     public virtual ICollection<FarmProduct> FarmProducts { get; set; } = new List<FarmProduct>();

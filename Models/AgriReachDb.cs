@@ -186,15 +186,15 @@ public partial class AgriReachDb : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.ProductCategory).WithMany(p => p.InverseProductCategory)
-                .HasForeignKey(d => d.ProductCategoryId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Products_Products");
+            //entity.HasOne(d => d.ProductCategory).WithMany(p => p.InverseProductCategory)
+            //    .HasForeignKey(d => d.ProductCategoryId)
+            //    .OnDelete(DeleteBehavior.ClientSetNull)
+            //    .HasConstraintName("FK_Products_Products");
 
-            entity.HasOne(d => d.ProductNavigation).WithOne(p => p.Product)
-                .HasForeignKey<Product>(d => d.ProductId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Products_ProductCategory");
+            //entity.HasOne(d => d.ProductNavigation).WithOne(p => p.Product)
+            //    .HasForeignKey<Product>(d => d.ProductId)
+            //    .OnDelete(DeleteBehavior.ClientSetNull)
+            //    .HasConstraintName("FK_Products_ProductCategory");
         });
 
         modelBuilder.Entity<ProductCategory>(entity =>

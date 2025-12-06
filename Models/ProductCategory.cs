@@ -9,5 +9,5 @@ public partial class ProductCategory
 
     public string ProductCategoryName { get; set; } = null!;
 
-    public virtual Product? Product { get; set; }
+    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

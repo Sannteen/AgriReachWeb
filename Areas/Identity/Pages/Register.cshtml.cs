@@ -57,7 +57,7 @@ namespace AgriReachWeb.Areas.Identity.Pages
                     var profile = new Farm
                     {
                         FarmName = Input.FarmName?.Trim() ?? $"{Input.FullName}'s Farm",
-                        Parish = Input.FarmLocation?.Trim() ?? ""
+                        Address = Input.FarmLocation?.Trim() ?? ""
                     };
                     _context.Farms.Add(profile);
                     await _context.SaveChangesAsync();

@@ -34,15 +34,15 @@
                         <!-- Full Name -->
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Full Name</label>
-                            <input asp-for="Input.FullName" class="form-control form-control-lg" placeholder="John Smith" required />
-                            <span asp-validation-for="Input.FullName" class="text-danger small"></span>
+                            <input asp-for="FullName" class="form-control form-control-lg" placeholder="John Smith" required />
+                            <span asp-validation-for="FullName" class="text-danger small"></span>
                         </div>
 
                         <!-- Email -->
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Email</label>
-                            <input asp-for="Input.Email" class="form-control form-control-lg" required />
-                            <span asp-validation-for="Input.Email" class="text-danger small"></span>
+                            <input asp-for="Email" class="form-control form-control-lg" required />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
                         </div>
 
                         <!-- Test -->
@@ -52,34 +52,34 @@
                         <!-- Phone (optional) -->
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Phone <small class="text-muted">(optional)</small></label>
-                            <input asp-for="Input.Phone" class="form-control form-control-lg" />
+                            <input asp-for="PhoneNumber" class="form-control form-control-lg" />
                         </div>
 
                         <!-- DROP-DOWN – Clean & Modern -->
                         <div class="mb-4">
-                            <label asp-for="Input.Role" class="form-label fw-bold text-success">I am registering as</label>
-                            <select asp-for="Input.Role" class="form-select form-select-lg" id="roleSelect">
+                            <label asp-for="Role" class="form-label fw-bold text-success">I am registering as</label>
+                            <select asp-for="Role" class="form-select form-select-lg" id="roleSelect">
                                 <option value="Buyer">Customer</option>
                                 <option value="Farmer">Farmer</option>
                             </select>
-                            <span asp-validation-for="Input.Role" class="text-danger small"></span>
+                            <span asp-validation-for="Role" class="text-danger small"></span>
                         </div>
 
-                        <!-- Farmer fields – shown only when Farmer is selected -->
+                        @* <!-- Farmer fields – shown only when Farmer is selected -->
                         <div id="farmerFields" class="border rounded-3 p-4 bg-light mt-3" style="display:none;">
                             <div class="row g-3">
                                 <div class="col-12">
                                     <label class="form-label">Farm Name</label>
-                                    <input asp-for="Input.FarmName" class="form-control" placeholder="e.g., Sunshine Farm" />
+                                    <input asp-for="FarmName" class="form-control" placeholder="e.g., Sunshine Farm" />
                                 </div>
                                 <div class="col-12">
                                     <label class="form-label">Parish / Location</label>
                                     <input asp-for="Input.FarmLocation" class="form-control" placeholder="e.g., St. Elizabeth" />
                                 </div>
                             </div>
-                        </div>
+                        </div> *@
 
-                        <!-- Farmer fields - shown only when Farmer selected -->
+                        @* <!-- Farmer fields - shown only when Farmer selected -->
                         <div id="farmerFields" class="border rounded-3 p-4 bg-light mb-4" style="display:none;">
                             <div class="row g-3">
                                 <div class="col-12">
@@ -91,9 +91,9 @@
                                     <input asp-for="Input.FarmLocation" class="form-control" placeholder="e.g., St. Elizabeth" />
                                 </div>
                             </div>
-                        </div>
+                        </div> *@
 
-                        <!-- Passwords -->
+                        @* <!-- Passwords -->
                         <div class="row g-3">
                             <div class="col-12 col-md-6">
                                 <label class="form-label fw-semibold">Password</label>
@@ -105,7 +105,7 @@
                                 <input asp-for="Input.ConfirmPassword" class="form-control form-control-lg" required />
                                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger small"></span>
                             </div>
-                        </div>
+                        </div> *@
 
                         <!-- SUBMIT BUTTON - NOW WORKS -->
                         <button type="submit" class="btn btn-success btn-lg w-100 mt-4 fw-bold">

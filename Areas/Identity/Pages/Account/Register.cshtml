@@ -47,7 +47,7 @@
                 <select asp-for="Input.Role" class="form-select">
                     <option value="">-- Select Role --</option>
                     <option value="Farmer">Farmer</option>
-                    <option value="User">User</option>
+                    <option value="Customer">Customer</option>
                 </select>
                 <label asp-for="Input.Role">Role</label>
                 <span asp-validation-for="Input.Role" class="text-danger"></span>
@@ -59,6 +59,11 @@
                 <h4>Farm Details</h4>
 
                 <div id="farmerFields">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.FarmId" class="form-control" placeholder="Farmer's Id " />
+                        <label asp-for="Input.FarmId">RADA Id</label>
+                        <span asp-validation-for="Input.FarmId" class="text-danger"></span>
+                    </div>
                     <div class="form-floating mb-3">
                         <input asp-for="Input.FarmName" class="form-control" placeholder="Farm Name" />
                         <label asp-for="Input.FarmName">Farm Name</label>

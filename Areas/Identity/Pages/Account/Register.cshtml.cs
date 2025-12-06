@@ -120,6 +120,10 @@ namespace AgriReachWeb.Areas.Identity.Pages.Account
 
             //Fields for Farmer
             [Required]
+            [Display(Name = "Farmer's Id")]
+            public string FarmId { get; set; }
+
+            [Required]
             [Display(Name = "Farm Name")]
             public string? FarmName { get; set; }
 
@@ -169,6 +173,7 @@ namespace AgriReachWeb.Areas.Identity.Pages.Account
                             Address = Input.Address,
                             Description = Input.Description,
                             DateRegistered = DateTime.Now,
+                            FarmId = int.TryParse(Input.FarmId, out var farmIdParsed) ? farmIdParsed : 0,
                             //AreaId = Input.AreaId.HasValue ? Input.AreaId.Value : 0 // Default to 0 if not provided
                         };
                         _context.Set<Farm>().Add(farm);

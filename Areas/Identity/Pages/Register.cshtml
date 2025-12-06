@@ -1,0 +1,154 @@
+﻿@page
+@model AgriReachWeb.Models.User //RegisterModel
+
+@{
+    ViewData["Title"] = "Create Account";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-success text-white text-center py-5">
+                    <h2 class="fw-bold mb-2">Join AgriReach</h2>
+                    <p class="mb-0 opacity-90 fs-5">Join as a Customer or Farmer</p>
+                </div>
+
+                <div class="card-body p-5">
+                    <!-- Only show errors when they exist -->
+                    @if (ModelState.ErrorCount > 0)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show rounded-3">
+                            <strong>Please fix the errors below:</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            <ul class="mt-2 mb-0">
+                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <li>@error.ErrorMessage</li>
+                                }
+                            </ul>
+                        </div>
+                    }
+
+                    <form method="post">
+                        <!-- Full Name -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Full Name</label>
+                            <input asp-for="Input.FullName" class="form-control form-control-lg" placeholder="John Smith" required />
+                            <span asp-validation-for="Input.FullName" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Email</label>
+                            <input asp-for="Input.Email" class="form-control form-control-lg" required />
+                            <span asp-validation-for="Input.Email" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Test -->
+
+
+
+                        <!-- Phone (optional) -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Phone <small class="text-muted">(optional)</small></label>
+                            <input asp-for="Input.Phone" class="form-control form-control-lg" />
+                        </div>
+
+                        <!-- DROP-DOWN – Clean & Modern -->
+                        <div class="mb-4">
+                            <label asp-for="Input.Role" class="form-label fw-bold text-success">I am registering as</label>
+                            <select asp-for="Input.Role" class="form-select form-select-lg" id="roleSelect">
+                                <option value="Buyer">Customer</option>
+                                <option value="Farmer">Farmer</option>
+                            </select>
+                            <span asp-validation-for="Input.Role" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Farmer fields – shown only when Farmer is selected -->
+                        <div id="farmerFields" class="border rounded-3 p-4 bg-light mt-3" style="display:none;">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label class="form-label">Farm Name</label>
+                                    <input asp-for="Input.FarmName" class="form-control" placeholder="e.g., Sunshine Farm" />
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Parish / Location</label>
+                                    <input asp-for="Input.FarmLocation" class="form-control" placeholder="e.g., St. Elizabeth" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Farmer fields - shown only when Farmer selected -->
+                        <div id="farmerFields" class="border rounded-3 p-4 bg-light mb-4" style="display:none;">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label class="form-label">Farm Name</label>
+                                    <input asp-for="Input.FarmName" class="form-control" placeholder="e.g., Green Valley Farm" />
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Parish</label>
+                                    <input asp-for="Input.FarmLocation" class="form-control" placeholder="e.g., St. Elizabeth" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Passwords -->
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label class="form-label fw-semibold">Password</label>
+                                <input asp-for="Input.Password" class="form-control form-control-lg" required />
+                                <span asp-validation-for="Input.Password" class="text-danger small"></span>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label fw-semibold">Confirm Password</label>
+                                <input asp-for="Input.ConfirmPassword" class="form-control form-control-lg" required />
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <!-- SUBMIT BUTTON - NOW WORKS -->
+                        <button type="submit" class="btn btn-success btn-lg w-100 mt-4 fw-bold">
+                            Create Account
+                        </button>
+                    </form>
+
+                    <div class="text-center mt-4">
+                        <p class="text-muted">
+                            Already have an account?
+                            <a asp-page="./Login" class="text-success fw-bold">Sign in</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Show/hide farmer fields
+        document.querySelectorAll('input[name="Input.Role"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+                document.getElementById('farmerFields').style.display =
+                    this.value === 'Farmer' ? 'block' : 'none';
+            });
+        });
+        // Trigger on page load
+        document.querySelector('input[name="Input.Role"]:checked')?.dispatchEvent(new Event('change'));
+    </script>
+
+    <script>
+        const roleSelect = document.getElementById('roleSelect');
+        const farmerFields = document.getElementById('farmerFields');
+
+        function toggleFarmerFields() {
+            farmerFields.style.display = roleSelect.value === 'Farmer' ? 'block' : 'none';
+        }
+
+        // Run on change and on page load (in case of validation error)
+        roleSelect.addEventListener('change', toggleFarmerFields);
+        toggleFarmerFields();  // initial check
+    </script>
+}

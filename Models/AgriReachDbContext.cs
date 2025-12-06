@@ -19,7 +19,7 @@ public partial class AgriReachDbContext : DbContext
 
     public virtual DbSet<Message> Messages { get; set; }
 
-    public virtual DbSet<Produce> Produces { get; set; }
+   // public virtual DbSet<Produce> Produces { get; set; }
 
     public virtual DbSet<Product> Products { get; set; }
 
@@ -54,14 +54,15 @@ public partial class AgriReachDbContext : DbContext
             entity.Property(e => e.FarmName)
                 .HasMaxLength(150)
                 .IsUnicode(false);
-            entity.Property(e => e.Parish)
-                .HasMaxLength(100)
-                .IsUnicode(false);
-            entity.Property(e => e.UserId).HasColumnName("UserID");
+            /* entity.Property(e => e.Parish)
+                 .HasMaxLength(100)
+                 .IsUnicode(false);
+             entity.Property(e => e.UserId).HasColumnName("UserID");*/
 
-            entity.HasOne(d => d.User).WithMany(p => p.Farms)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK_Farms_Users");
+            entity.HasOne<User>()
+                 .WithMany()
+                 .HasForeignKey(e => e.UserId)
+                 .HasConstraintName("FK_Farms_Users");
         });
 
         modelBuilder.Entity<Message>(entity =>
@@ -88,7 +89,7 @@ public partial class AgriReachDbContext : DbContext
                 .HasConstraintName("FK_Messages_Sender");
         });
 
-        modelBuilder.Entity<Produce>(entity =>
+        modelBuilder.Entity<FarmProduct>(entity =>
         {
             entity.HasKey(e => e.FarmProductId).HasName("PK__FarmProd__0065724677D12861");
 
@@ -105,11 +106,11 @@ public partial class AgriReachDbContext : DbContext
                 .HasColumnType("datetime");
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
 
-            entity.HasOne(d => d.Farm).WithMany(p => p.Produces)
+            entity.HasOne(d => d.Farm).WithMany(p => p.FarmProducts)
                 .HasForeignKey(d => d.FarmId)
                 .HasConstraintName("FK_FarmProducts_Farm");
 
-            entity.HasOne(d => d.Product).WithMany(p => p.Produces)
+            entity.HasOne(d => d.Product).WithMany(p => p.FarmProducts)
                 .HasForeignKey(d => d.ProductId)
                 .HasConstraintName("FK_FarmProducts_Product");
         });
@@ -119,7 +120,7 @@ public partial class AgriReachDbContext : DbContext
             entity.HasKey(e => e.ProductId).HasName("PK__Products__B40CC6ED86EE0BBE");
 
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
-            entity.Property(e => e.Category)
+            entity.Property(e => e.ProductCategory)
                 .HasMaxLength(100)
                 .IsUnicode(false);
             entity.Property(e => e.ProductName)

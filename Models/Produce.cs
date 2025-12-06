@@ -17,6 +17,8 @@ public partial class Produce
 
     public DateTime? LastUpdated { get; set; }
 
+    public string? Produces { get; set; }
+
     public virtual Farm Farm { get; set; } = null!;
 
     public virtual Product Product { get; set; } = null!;

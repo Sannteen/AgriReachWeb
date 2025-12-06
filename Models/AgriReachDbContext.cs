@@ -59,9 +59,9 @@ public partial class AgriReachDbContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.UserId).HasColumnName("UserID");
 
-            entity.HasOne(d => d.User).WithMany(p => p.Farms)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("FK_Farms_Users");
+            //entity.HasOne(d => d.User).WithMany(p => p.Farms)
+            //    .HasForeignKey(d => d.UserId)
+            //    .HasConstraintName("FK_Farms_Users");
         });
 
         modelBuilder.Entity<Message>(entity =>
@@ -105,13 +105,13 @@ public partial class AgriReachDbContext : DbContext
                 .HasColumnType("datetime");
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
 
-            entity.HasOne(d => d.Farm).WithMany(p => p.Produces)
-                .HasForeignKey(d => d.FarmId)
-                .HasConstraintName("FK_FarmProducts_Farm");
+            //entity.HasOne(d => d.Farm).WithMany(p => p.Produces)
+            //    .HasForeignKey(d => d.FarmId)
+            //    .HasConstraintName("FK_FarmProducts_Farm");
 
-            entity.HasOne(d => d.Product).WithMany(p => p.Produces)
-                .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("FK_FarmProducts_Product");
+            //entity.HasOne(d => d.Product).WithMany(p => p.Produces)
+            //    .HasForeignKey(d => d.ProductId)
+            //    .HasConstraintName("FK_FarmProducts_Product");
         });
 
         modelBuilder.Entity<Product>(entity =>
@@ -119,9 +119,9 @@ public partial class AgriReachDbContext : DbContext
             entity.HasKey(e => e.ProductId).HasName("PK__Products__B40CC6ED86EE0BBE");
 
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
-            entity.Property(e => e.Category)
-                .HasMaxLength(100)
-                .IsUnicode(false);
+            //entity.Property(e => e.Category)
+            //    .HasMaxLength(100)
+            //    .IsUnicode(false);
             entity.Property(e => e.ProductName)
                 .HasMaxLength(150)
                 .IsUnicode(false);

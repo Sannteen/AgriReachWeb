@@ -1,76 +1,85 @@
-using AgriReachWeb.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.ComponentModel.DataAnnotations;
+using AgriReachWeb.Models;
+using AgriReachWeb.Data;
+using System.Security.Cryptography;
+using System.Text;
 
-namespace AgriReachWeb.Areas.Identity.Pages
+namespace AgriReachWeb.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
         private readonly AgriReachDbContext _context;
 
-        public RegisterModel(UserManager<User> userManager, SignInManager<User> signInManager, AgriReachDbContext context)
+        public RegisterModel(AgriReachDbContext context)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
             _context = context;
-        }
+        }   
 
         [BindProperty]
-        public InputModel Input { get; set; } = new();
+        public User User { get; set; } = new();
 
-        public class InputModel
+        [BindProperty]
+        public Farm Farm { get; set; } = new();
+
+        [BindProperty]
+        public string Password { get; set; } = "";
+
+        [BindProperty]
+        public string ConfirmPassword { get; set; } = "";
+
+        public void OnGet()
         {
-            [Required] public string FullName { get; set; } = "";
-            [Required][EmailAddress] public string Email { get; set; } = "";
-            public string? Phone { get; set; }
-            [Required] public string Role { get; set; } = "Buyer";
-            public string? FarmName { get; set; }
-            public string? FarmLocation { get; set; }
-            [Required][DataType(DataType.Password)] public string Password { get; set; } = "";
-            [DataType(DataType.Password)][Compare("Password")] public string ConfirmPassword { get; set; } = "";
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid) return Page();
+            if (!ModelState.IsValid)
+                return Page();
 
-            var user = new User
+            if (Password != ConfirmPassword)
             {
-                FullName = Input.FullName.Trim(),
-                Email = Input.Email,
-                PhoneNumber = Input.Phone,
-                Role = Input.Role,
-                IsVerified = false,
-                DateCreated = DateTime.Now
-            };
-
-            var result = await _userManager.CreateAsync(user, Input.Password); // PASSWORD IS HASHED HERE
-
-            if (result.Succeeded)
-            {
-                if (Input.Role == "Farmer")
-                {
-                    var profile = new Farm
-                    {
-                        FarmName = Input.FarmName?.Trim() ?? $"{Input.FullName}'s Farm",
-                        Address = Input.FarmLocation?.Trim() ?? ""
-                    };
-                    _context.Farms.Add(profile);
-                    await _context.SaveChangesAsync();
-                }
-
-                await _signInManager.SignInAsync(user, isPersistent: false);
-                return RedirectToPage("/Index");
+                ModelState.AddModelError("", "Passwords do not match.");
+                return Page();
             }
 
-            foreach (var error in result.Errors)
-                ModelState.AddModelError(string.Empty, error.Description);
+            // Hash password
+            User.PasswordHash = HashPassword(Password);
+            User.IsVerified = false;
+            User.DateCreated = DateTime.Now;
 
-            return Page();
+            _context.Users.Add(User);
+            await _context.SaveChangesAsync(); //  Gets UserId
+
+            // Only create Farm if user is Farmer
+            if (User.Role == "Farmer")
+            {
+                var farm = new Farm
+                {
+                    UserId = User.UserId,
+                    FarmName = "My Farm",           // default
+                    Address = "Jamaica",
+                    Parish = "Not specified",       // default
+                    Produces = "Various crops",     // default
+                    Product = "Fresh produce",      // default
+                    AreaId = null,                  // nullable
+                    Area = null,
+                    DateRegistered = DateTime.Now
+                };
+
+                _context.Farms.Add(farm);
+                await _context.SaveChangesAsync();
+            }
+
+            TempData["Success"] = "Account created successfully!";
+            return RedirectToPage("/Account/Login");
+        }
+
+        private string HashPassword(string password)
+        {
+            using var sha256 = SHA256.Create();
+            var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+            return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
         }
     }
 }

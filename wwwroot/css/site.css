@@ -59,3 +59,35 @@ body {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+.advertisement {
+    text-align: center;
+    background-color: #f0f8f5; /* light natural color */
+    padding: 40px 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.ad-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.ad-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.ad-title {
+    font-size: 2em;
+    font-weight: bold;
+    color: #2c6e49; /* natural green tone */
+    margin-bottom: 10px;
+}
+
+.ad-tagline {
+    font-size: 1.2em;
+    color: #4b4b4b;
+}

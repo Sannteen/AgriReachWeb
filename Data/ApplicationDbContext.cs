@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using AgriReachWeb.Models;
 
 namespace AgriReachWeb.Data
 {
@@ -8,5 +9,6 @@ namespace AgriReachWeb.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
     }
 }

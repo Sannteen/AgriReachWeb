@@ -8,6 +8,12 @@ namespace AgriReachWeb.Controllers
     {
         public IActionResult Index()
         {
+            var ProductCategory = new List<ProductCategory>()
+            {
+                new ProductCategory {ProductCategoryId = 1, ProductCategoryName = "Fruits"},
+                new ProductCategory {ProductCategoryId = 2, ProductCategoryName = "Vegetables"}, 
+            };
+            ViewBag.ProductCategory = ProductCategory;
             return View();
         }
 

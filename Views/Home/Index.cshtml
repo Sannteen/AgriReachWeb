@@ -343,55 +343,79 @@
 
 
 <!--PRODUCT CATEGORY-->
-<section class="my-5">
-    <div class="text-center mb-4">
-        <h2 class="text-success">Product Categories</h2>
-    </div>
+        <section class="my-5">
+            <div class="text-center mb-4">
+                <h2 class="text-success">Product Categories</h2>
+            </div>
 
-    <div class="d-flex justify-content-evenly flex-wrap text-center">
-        <!-- Category: Fruits -->
-        <div class="category-card">
-            <img src="~/images/AssortedFriuts.jpg" class="rounded-circle mx-auto d-block" style="width:80px; height:80px; object-fit:cover;" alt="Fruits">
-            <p class="mt-1 fw-bold">Fruits</p>
-        </div>
+            <div class="d-flex justify-content-evenly flex-wrap text-center">
 
-        <!-- Category: Vegetables -->
-        <div class="category-card">
-            <img src="~/images/Vegetables.jpg" class="rounded-circle mx-auto d-block" style="width:80px; height:80px; object-fit:cover;" alt="Vegetables">
-            <p class="mt-1 fw-bold">Vegetables</p>
-        </div>
+                
+                <a asp-controller="Home" asp-action="ProductCategory" asp-route-category="Fruits" class="text-decoration-none text-dark">
+                    <div class="category-card">
+                        <img src="~/images/AssortedFriuts.jpg" class="rounded-circle mx-auto d-block"
+                             style="width:80px; height:80px; object-fit:cover;" alt="Fruits">
+                        <p class="mt-1 fw-bold">Fruits</p>
+                    </div>
+                </a>
 
-        <!-- Category: Herbs -->
-        <div class="category-card">
-            <img src="~/images/herbs.jpg" class="rounded-circle mx-auto d-block" style="width:80px; height:80px; object-fit:cover;" alt="Herbs">
-            <p class="mt-1 fw-bold">Herbs</p>
-        </div>
+                
+                <a asp-controller="Home" asp-action="ProductCategory" asp-route-category="Vegetables" class="text-decoration-none text-dark">
+                    <div class="category-card">
+                        <img src="~/images/Vegetables.jpg" class="rounded-circle mx-auto d-block"
+                             style="width:80px; height:80px; object-fit:cover;" alt="Vegetables">
+                        <p class="mt-1 fw-bold">Vegetables</p>
+                    </div>
+                </a>
 
-        <!-- Category: Spices & Seasoning -->
-        <div class="category-card">
-            <img src="~/images/Spices_Seasoning.jpg" class="rounded-circle mx-auto d-block" style="width:80px; height:80px; object-fit:cover;" alt="Spices & Seasoning">
-            <p class="mt-1 fw-bold">Spices & Seasoning</p>
-        </div>
+                
+                <a asp-controller="Home" asp-action="ProductCategory" asp-route-category="Herbs" class="text-decoration-none text-dark">
+                    <div class="category-card">
+                        <img src="~/images/herbs.jpg" class="rounded-circle mx-auto d-block"
+                             style="width:80px; height:80px; object-fit:cover;" alt="Herbs">
+                        <p class="mt-1 fw-bold">Herbs</p>
+                    </div>
+                </a>
 
-       
-        <!-- Category: Spices & Seasoning -->
-        <div class="category-card">
-            <img src="~/images/ground-provisions.jpg" class="rounded-circle mx-auto d-block" style="width:80px; height:80px; object-fit:cover;" alt="Ground Provisions">
-            <p class="mt-1 fw-bold">Ground Provisions</p>
-        </div>
+                
+                <a asp-controller="Home" asp-action="ProductCategory" asp-route-category="Spices" class="text-decoration-none text-dark">
+                    <div class="category-card">
+                        <img src="~/images/Spices_Seasoning.jpg" class="rounded-circle mx-auto d-block"
+                             style="width:80px; height:80px; object-fit:cover;" alt="Spices & Seasoning">
+                        <p class="mt-1 fw-bold">Spices & Seasoning</p>
+                    </div>
+                </a>
 
-        <div class="category-card">
-            <img src="~/images/Prepared_Foods.jpg" class="rounded-circle mx-auto d-block" style="width:80px; height:80px; object-fit:cover;" alt="Honey & Preserves">
-            <p class="mt-1 fw-bold">Honey & Preserves</p>
-        </div>
+                
+                <a asp-controller="Home" asp-action="ProductCategory" asp-route-category="Ground Provisions" class="text-decoration-none text-dark">
+                    <div class="category-card">
+                        <img src="~/images/ground-provisions.jpg" class="rounded-circle mx-auto d-block"
+                             style="width:80px; height:80px; object-fit:cover;" alt="Ground Provisions">
+                        <p class="mt-1 fw-bold">Ground Provisions</p>
+                    </div>
+                </a>
 
-        <div class="category-card">
-            <img src="~/images/Spices_Seasoning.jpg" class="rounded-circle mx-auto d-block" style="width:80px; height:80px; object-fit:cover;" alt="Prepared Foods">
-            <p class="mt-1 fw-bold">Prepared Foods</p>
-        </div>
+                
+                <a asp-controller="Home" asp-action="ProductCategory" asp-route-category="Honey & Preserves" class="text-decoration-none text-dark">
+                    <div class="category-card">
+                        <img src="~/images/Prepared_Foods.jpg" class="rounded-circle mx-auto d-block"
+                             style="width:80px; height:80px; object-fit:cover;" alt="Honey & Preserves">
+                        <p class="mt-1 fw-bold">Honey & Preserves</p>
+                    </div>
+                </a>
 
-    </div>
-</section>
+                
+                <a asp-controller="Home" asp-action="ProductCategory" asp-route-category="Prepared Foods" class="text-decoration-none text-dark">
+                    <div class="category-card">
+                        <img src="~/images/Spices_Seasoning.jpg" class="rounded-circle mx-auto d-block"
+                             style="width:80px; height:80px; object-fit:cover;" alt="Prepared Foods">
+                        <p class="mt-1 fw-bold">Prepared Foods</p>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
 
 
 

@@ -1,0 +1,10 @@
+﻿@model List<string>
+
+<ul class="dropdown-menu">
+    <li><a class="dropdown-item" asp-controller="Home" asp-action="Farm">All Farms</a></li>
+
+    @foreach (var farm in Model)
+    {
+        <li><a class="dropdown-item" href="#">@farm</a></li>
+    }
+</ul>

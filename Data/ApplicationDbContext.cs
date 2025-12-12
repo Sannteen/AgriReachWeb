@@ -10,5 +10,9 @@ namespace AgriReachWeb.Data
         {
         }
         public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<Farm> Farms { get; set; }
+        public DbSet<FarmersMarketLocation> FarmersMarketLocations { get; set;
+        }
     }
 }
+

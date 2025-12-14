@@ -1,20 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 namespace AgriReachWeb.Models;
 
 public partial class User
 {
+
+    [Key]
     public int UserId { get; set; }
 
+    [Required]
     public string FullName { get; set; } = null!;
-
+    [Required]
     public string Email { get; set; } = null!;
 
-    public string PasswordHash { get; set; } = string.Empty;
+    public string PasswordHash { get; set; } = null!;
 
     public string? PhoneNumber { get; set; }
-
+    [Required]
     public string Role { get; set; } = null!;
 
     public bool? IsVerified { get; set; }

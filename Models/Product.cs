@@ -5,14 +5,16 @@ namespace AgriReachWeb.Models;
 
 public partial class Product
 {
+
+    [Key]
     public int ProductId { get; set; }
-
-    public string ProductName { get; set; } = null!;
-
-    public string Unit { get; set; } = null!;
-
+    [Required]
+    public string ProductName { get; set; }
+    [Required]
+    public string Unit { get; set; } 
+    [Required]
     public int ProductCategoryId { get; set; }
-
+    [Required]
     public decimal Price { get; set; }
 
     public string Produces { get; set; } = null!;

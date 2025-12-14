@@ -48,6 +48,12 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
+app.MapControllerRoute(
+    name: "Login",
+    pattern: "{controller=LoginsController}/{action=Index}/{id?}")
+    .WithStaticAssets();
+
+
 app.MapRazorPages()
    .WithStaticAssets();
 

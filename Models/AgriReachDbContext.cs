@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using AgriReachWeb.Models;
 
 namespace AgriReachWeb.Models;
 
@@ -307,4 +308,6 @@ public partial class AgriReachDbContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+
 }

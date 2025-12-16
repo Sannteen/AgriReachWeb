@@ -1,38 +1,54 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - AgriReachWeb</title>
-    <script type="importmap"></script>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- ✅ Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/AgriReachWeb.styles.css" asp-append-version="true" />
 </head>
+
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-success border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-success border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AgriReachWeb</a>
+
+                <!-- LOGO / BRAND -->
+                <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
+                    AgriReachWeb
+                </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
+                    <!-- LEFT NAV -->
                     <ul class="navbar-nav flex-grow-1">
-
-                        <!-- HOME -->
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
 
-                        <!-- PRIVACY -->
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-light" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
 
-                        <!-- PRODUCT CATEGORY DROPDOWN -->
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-controller="Products" asp-action="Products">Products</a>
+                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-light" href="#" data-bs-toggle="dropdown">
                                 Product Category
@@ -40,7 +56,6 @@
                             @await Component.InvokeAsync("ProductCategoryMenu")
                         </li>
 
-                        <!-- FARM DROPDOWN -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-light" href="#" data-bs-toggle="dropdown">
                                 Farm
@@ -48,17 +63,56 @@
                             @await Component.InvokeAsync("FarmMenu")
                         </li>
 
-                        <!-- LOCATION DROPDOWN -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-light" href="#" data-bs-toggle="dropdown">
                                 Location
                             </a>
                             @await Component.InvokeAsync("LocationMenu")
                         </li>
+                    </ul>
 
-                      </ul>
+                    <!-- RIGHT NAV -->
+                    <ul class="navbar-nav ms-auto d-flex align-items-center gap-3">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            var user = await UserManager.GetUserAsync(User);
+                            var roles = await UserManager.GetRolesAsync(user);
 
-                    <partial name="_LoginPartial" />
+                            if (roles.Contains("Customer"))
+                            {
+                                <li class="nav-item">
+                                    <span class="nav-link text-light">
+                                        Welcome, @user.UserName
+                                    </span>
+                                </li>
+                            }
+
+                            <!-- SHOPPING BAG -->
+                            <li class="nav-item position-relative">
+                                <a class="nav-link text-light" asp-controller="ShoppingBag" asp-action="Index">
+                                    <i class="bi bi-bag-fill fs-4"></i>
+                                    <span id="bagCount"
+                                          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        0
+                                    </span>
+                                </a>
+                            </li>
+
+                            <!-- LOGOUT -->
+                            <li class="nav-item">
+                                <a class="btn btn-outline-light btn-sm"
+                                   asp-controller="Account"
+                                   asp-action="Logout">
+                                    Logout
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <partial name="_LoginPartial" />
+                        }
+                    </ul>
+
                 </div>
             </div>
         </nav>
@@ -73,14 +127,14 @@
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2025 - AgriReachWeb -
-            <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <a asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
 
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

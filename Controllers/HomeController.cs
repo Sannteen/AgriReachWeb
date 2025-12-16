@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using AgriReachWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AgriReachWeb.Controllers
 {
@@ -8,10 +9,11 @@ namespace AgriReachWeb.Controllers
     {
         public IActionResult Index()
         {
+            
             var ProductCategory = new List<ProductCategory>()
             {
                 new ProductCategory {ProductCategoryId = 1, ProductCategoryName = "Fruits"},
-                new ProductCategory {ProductCategoryId = 2, ProductCategoryName = "Vegetables"}, 
+                new ProductCategory {ProductCategoryId = 2, ProductCategoryName = "Vegetables"},
                 new ProductCategory {ProductCategoryId = 3, ProductCategoryName = "Herbs"},
                 new ProductCategory {ProductCategoryId = 4, ProductCategoryName = "Spice & Seasoning"},
                 new ProductCategory {ProductCategoryId = 5, ProductCategoryName = "Ground Provisions"},
@@ -19,7 +21,14 @@ namespace AgriReachWeb.Controllers
                 new ProductCategory {ProductCategoryId = 7, ProductCategoryName = "Prepared Foods"},
             };
             ViewBag.ProductCategory = ProductCategory;
-            return View();
+
+            // Check if user is logged in
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                return View("UserHome"); // for when user become a customer and login in 
+            }
+
+            return View(); // Default  for guests
         }
 
         public IActionResult Privacy()

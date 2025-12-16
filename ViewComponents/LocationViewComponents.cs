@@ -9,9 +9,7 @@ namespace AgriReachWeb.ViewComponents
             var locations = new List<string>()
             {
                 "Kingston & St. Andrew",
-                "St. Mary",
-                "Clarendon",
-                "St. Catherine"
+                "more locations coming soon..."
             };
 
             return View(locations);

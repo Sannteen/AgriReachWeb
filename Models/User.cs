@@ -16,7 +16,7 @@ public partial class User
     [Required]
     public string Email { get; set; } = null!;
 
-    public string PasswordHash { get; set; } = null!;
+    public string? PasswordHash { get; set; } = null!;
 
     public string? PhoneNumber { get; set; }
     [Required]

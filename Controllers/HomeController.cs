@@ -25,7 +25,7 @@ namespace AgriReachWeb.Controllers
             // Check if user is logged in
             if (User.Identity != null && User.Identity.IsAuthenticated)
             {
-                return View("UserHome"); // for when user become a customer and login in 
+                return View("HomeUser"); // for when user become a customer and login in 
             }
 
             return View(); // Default  for guests
@@ -45,6 +45,11 @@ namespace AgriReachWeb.Controllers
         public IActionResult FarmerDashboard()
         {
             return View("FarmerDashboard");
+        }
+
+        public IActionResult HomeUser()
+        {
+            return View("HomeUser");
         }
 
     }

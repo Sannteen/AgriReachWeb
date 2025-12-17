@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace AgriReachWeb.Models;
 
 public partial class FarmProduct
 {
+    [Key]
     public int FarmProductId { get; set; }
 
     public int FarmId { get; set; }

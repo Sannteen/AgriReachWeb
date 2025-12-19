@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AgriReachWeb.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace AgriReachWeb.Controllers
 {

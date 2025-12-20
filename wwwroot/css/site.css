@@ -83,7 +83,7 @@ body {
 .ad-title {
     font-size: 2em;
     font-weight: bold;
-    color: #2c6e49; /* natural green tone */
+    color: #2c6e49; 
     margin-bottom: 10px;
 }
 
@@ -94,7 +94,7 @@ body {
 
 
 .hero-img {
-    height: 60vh; /* 60% of viewport height */
+    height: 60vh; 
     object-fit: cover;
 }
 
@@ -114,3 +114,8 @@ body {
     font-weight: bold;
 }
 
+
+.nav-item.dropdown:hover > .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}

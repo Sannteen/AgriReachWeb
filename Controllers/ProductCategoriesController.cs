@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AgriReachWeb.Models;
+using AgriReachWeb.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AgriReachWeb.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AgriReachWeb.Controllers
 {
@@ -21,8 +22,21 @@ namespace AgriReachWeb.Controllers
         // GET: ProductCategories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ProductCategories.ToListAsync());
+           // GET: ProductCategories
+
+            var categories = await _context.ProductCategories
+                .Select(c => new ProductCategoryVM
+                {
+                    ProductCategoryId = c.ProductCategoryId,
+                    CategoryName = c.ProductCategoryName,
+                   
+                })
+                .ToListAsync();
+
+            return View(categories);
         }
+
+        
 
         // GET: ProductCategories/Details/5
         public async Task<IActionResult> Details(int? id)

@@ -1,14 +1,14 @@
-﻿@model List<AgriReachWeb.Models.ProductCategory>
+﻿@model IEnumerable<AgriReachWeb.Models.ProductCategory>
 
-<ul class="dropdown-menu">
-    <li><a class="dropdown-item" asp-controller="Home" asp-action="ProductCategory">All Categories</a></li>
+@foreach (var category in Model)
+{
+    <li>
+        <a class="dropdown-item"
+           asp-controller="ProductCategories"
+           asp-action="Details"
+           asp-route-id="@category.ProductCategoryId">
+            @category.ProductCategoryName
+        </a>
+    </li>
+}
 
-    @foreach (var item in Model)
-    {
-        <li>
-            <a class="dropdown-item" asp-controller="Products" asp-action="ByCategory" asp-route-id="@item.ProductCategoryId">
-                @item.ProductCategoryName
-            </a>
-        </li>
-    }
-</ul>

@@ -5,9 +5,17 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AgriReachWeb.Controllers
 {
-    public class HomeController : Controller
+          
+        public class HomeController : Controller
     {
-        public IActionResult Index()
+            private readonly AgriReachDbContext _context;
+
+            public HomeController(AgriReachDbContext context)
+            {
+                _context = context;
+            }
+
+            public IActionResult Index()
         {
             
             var ProductCategory = new List<ProductCategory>()

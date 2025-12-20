@@ -1,35 +1,25 @@
-﻿@model IEnumerable<AgriReachWeb.Models.ProductCategory>
+﻿@model IEnumerable<AgriReachWeb.ViewModels.ProductCategoryVM>
 
-@{
-    ViewData["Title"] = "Index";
-}
+<h2 class="text-center text-success fw-bold mb-4">Product Categories</h2>
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductCategoryName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductCategoryName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductCategoryId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductCategoryId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductCategoryId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var category in Model)
+    {
+        <div class="col">
+            <a asp-controller="ProductCategories"
+               asp-action="Details"
+               asp-route-id="@category.ProductCategoryId"
+               class="text-decoration-none text-dark">
+                <div class="card h-100 shadow-sm border-0 position-relative">
+                    <img src="~/images/default-category.jpg"
+                         class="card-img-top"
+                         style="height:150px; object-fit:cover;"
+                         alt="@category.CategoryName">
+                    <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                        <h5 class="text-white fw-bold">@category.CategoryName</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+</div>

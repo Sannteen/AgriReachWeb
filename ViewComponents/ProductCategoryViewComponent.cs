@@ -1,22 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using AgriReachWeb.Models;
 
 namespace AgriReachWeb.ViewComponents
 {
     public class ProductCategoryMenuViewComponent : ViewComponent
     {
-        public IViewComponentResult Invoke()
+        private readonly AgriReachDbContext _context;
+
+        public ProductCategoryMenuViewComponent(AgriReachDbContext context)
         {
-            var categories = new List<ProductCategory>()
-            {
-                new ProductCategory {ProductCategoryId = 1, ProductCategoryName = "Fruits"},
-                new ProductCategory {ProductCategoryId = 2, ProductCategoryName = "Vegetables"},
-                new ProductCategory {ProductCategoryId = 3, ProductCategoryName = "Herbs"},
-                new ProductCategory {ProductCategoryId = 4, ProductCategoryName = "Spice & Seasoning"},
-                new ProductCategory {ProductCategoryId = 5, ProductCategoryName = "Ground Provisions"},
-                new ProductCategory {ProductCategoryId = 6, ProductCategoryName = "Honey & Preserves"},
-                new ProductCategory {ProductCategoryId = 7, ProductCategoryName = "Prepared Foods"},
-            };
+            _context = context;
+        }
+
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            var categories = await _context.ProductCategories
+                .OrderBy(c => c.ProductCategoryName)
+                .ToListAsync();
 
             return View(categories);
         }

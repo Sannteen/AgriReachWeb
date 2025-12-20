@@ -7,11 +7,11 @@ using System.Text;
 
 namespace AgriReachWeb.Pages.Account.LoginModel
 {
-    public class LoginModel : PageModel
+    public class UsersLogin : PageModel
     {
         private readonly AgriReachDbContext _context;
 
-        public LoginModel(AgriReachDbContext context)
+        public UsersLogin(AgriReachDbContext context)
         {
             _context = context;
         }
@@ -21,6 +21,9 @@ namespace AgriReachWeb.Pages.Account.LoginModel
 
         [BindProperty]
         public string Password { get; set; } = "";
+
+        [BindProperty]
+        public string Role { get; set; } = "";
 
         public void OnGet()
         {
@@ -35,7 +38,14 @@ namespace AgriReachWeb.Pages.Account.LoginModel
             }
 
             var user = _context.Users
-                .FirstOrDefault(u => u.Email == Email);
+                .FirstOrDefault(u => u.Email == Email );
+
+            var pword = _context.Users
+                .FirstOrDefault(u => u.PasswordHash == Password);
+
+
+            var user_role = _context.Users
+                .FirstOrDefault(u => u.Role == Role );
 
             if (user == null)
             {
@@ -55,7 +65,19 @@ namespace AgriReachWeb.Pages.Account.LoginModel
             HttpContext.Session.SetString("FullName", user.FullName);
             HttpContext.Session.SetString("Role", user.Role);
 
-            return RedirectToPage("/Index"); // or dashboard
+            if (user.Role == "Famer")
+            {
+
+                return RedirectToPage("/view/Home/FarmerDashboard"); // or dashboard
+            }
+
+            else
+            {
+
+                return RedirectToPage("/view/User/Details"); // or dashboard
+
+            }
+              
         }
 
         private string HashPassword(string password)

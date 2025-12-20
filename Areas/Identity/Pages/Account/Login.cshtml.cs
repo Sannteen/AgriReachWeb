@@ -38,46 +38,48 @@ namespace AgriReachWeb.Pages.Account.LoginModel
             }
 
             var user = _context.Users
-                .FirstOrDefault(u => u.Email == Email );
-
-            var pword = _context.Users
-                .FirstOrDefault(u => u.PasswordHash == Password);
-
-
-            var user_role = _context.Users
-                .FirstOrDefault(u => u.Role == Role );
+                .FirstOrDefault(u => u.Email == Email);
 
             if (user == null)
             {
-                TempData["Error"] = "Invalid email or password.";
+                TempData["Error"] = "Invalid email";
                 return Page();
-            }
-
-            // Verify hashed password
-            if (user.PasswordHash != HashPassword(Password))
-            {
-                TempData["Error"] = "Invalid email or password.";
-                return Page();
-            }
-
-            // Login successful — create session
-            HttpContext.Session.SetString("UserId", user.UserId.ToString());
-            HttpContext.Session.SetString("FullName", user.FullName);
-            HttpContext.Session.SetString("Role", user.Role);
-
-            if (user.Role == "Famer")
-            {
-
-                return RedirectToPage("/view/Home/FarmerDashboard"); // or dashboard
             }
 
             else
-            {
 
-                return RedirectToPage("/view/User/Details"); // or dashboard
+                // Verify hashed password
+                if (user.PasswordHash != HashPassword(Password))
+                {
+                    TempData["Error"] = "Invalid password.";
+                    return Page();
+                }
 
-            }
-              
+                else
+
+                {
+
+                    // Login successful — create session
+                    HttpContext.Session.SetString("UserId", user.UserId.ToString());
+                    HttpContext.Session.SetString("FullName", user.FullName);
+                    HttpContext.Session.SetString("Role", user.Role);
+
+                    if (user.Role == "Farmer")
+                    {
+                        //return RedirectToPage("Fame");
+                        return RedirectToAction("Index", "FarmProducts");
+                    }
+                    else if (user.Role == "Buyer")
+                    {
+                        return RedirectToPage("/view/User/Details");
+                    }
+                    else
+                    {
+                        // Handle unknown role
+                        TempData["Error"] = "Unknown user role.";
+                        return Page();
+                    }
+                }
         }
 
         private string HashPassword(string password)

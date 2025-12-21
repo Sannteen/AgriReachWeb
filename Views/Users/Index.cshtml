@@ -1,71 +1,83 @@
 ﻿@model IEnumerable<AgriReachWeb.Models.User>
 
-@{
-    ViewData["Title"] = "Index";
-}
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0 text-success fw-bold">Manage Users</h3>
+        <a asp-action="Create" class="btn btn-success btn-lg shadow-sm">
+            <i class="bi bi-person-plus-fill me-2"></i>Create New User
+        </a>
+    </div>
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FullName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PasswordHash)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Role)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsVerified)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateCreated)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PasswordHash)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsVerified)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateCreated)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div class="card border-0 shadow">
+        <div class="card-header" style="background-color: #198754; color: white;">
+            <h5 class="mb-0">Users List</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0 align-middle">
+                    <thead class="table-success">
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Role</th>
+                            <th>Verified</th>
+                            <th>Created On</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="fw-semibold">@item.FullName</td>
+                                <td>@item.Email</td>
+                                <td>@item.PhoneNumber</td>
+                                <td>
+                                    @{
+                                        var roleBadgeClass = item.Role?.Trim().ToLower() switch
+                                        {
+                                            "admin" => "bg-danger",
+                                            "moderator" => "bg-info text-dark",
+                                            "user" => "bg-secondary",
+                                            _ => "bg-success"
+                                        };
+                                    }
+                                    <span class="badge @roleBadgeClass fs-6">@item.Role</span>
+                                </td>
+                                <td>
+                                    @if (item.IsVerified == true)
+                                    {
+                                        <span class="badge bg-success">Yes</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning text-dark">No</span>
+                                    }
+                                </td>
+                                <td>
+                                    @(item.DateCreated.HasValue? item.DateCreated.Value.ToString("MMM dd, yyyy") : "")
+                                </td>
+                                <td class="text-end">
+                                    <a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-sm btn-outline-success me-1">Edit</a>
+                                    <a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-sm btn-outline-primary me-1">View</a>
+                                    <a asp-action="Delete" asp-route-id="@item.UserId" class="btn btn-sm btn-outline-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer bg-light text-center text-muted">
+            @if (!Model.Any())
+            {
+                <p class="my-4">No users yet. <a asp-action="Create" class="fw-bold text-success">Add the first one!</a></p>
+            }
+            else
+            {
+                <small>@Model.Count() user(s) in total</small>
+            }
+        </div>
+    </div>
+</div>

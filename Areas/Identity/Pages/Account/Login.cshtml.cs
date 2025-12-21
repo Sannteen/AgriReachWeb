@@ -2,18 +2,20 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using AgriReachWeb.Models;
 using AgriReachWeb.Data;
-using System.Security.Cryptography;
-using System.Text;
+using Microsoft.AspNetCore.Identity;  
 
-namespace AgriReachWeb.Pages.Account.LoginModel
+
+namespace AgriReachWeb.Pages.Account.UsersLogin  
 {
-    public class UsersLogin : PageModel
+    public class UsersLogin : PageModel  
     {
         private readonly AgriReachDbContext _context;
+        private readonly IPasswordHasher<User> _passwordHasher;  // Add this
 
-        public UsersLogin(AgriReachDbContext context)
+        public UsersLogin(AgriReachDbContext context, IPasswordHasher<User> passwordHasher)
         {
             _context = context;
+            _passwordHasher = passwordHasher;
         }
 
         [BindProperty]
@@ -21,9 +23,6 @@ namespace AgriReachWeb.Pages.Account.LoginModel
 
         [BindProperty]
         public string Password { get; set; } = "";
-
-        [BindProperty]
-        public string Role { get; set; } = "";
 
         public void OnGet()
         {
@@ -46,47 +45,40 @@ namespace AgriReachWeb.Pages.Account.LoginModel
                 return Page();
             }
 
+            // Fix: Check for null PasswordHash before verifying
+            if (string.IsNullOrEmpty(user.PasswordHash))
+            {
+                TempData["Error"] = "Invalid password.";
+                return Page();
+            }
+
+            // NEW: This single line replaces your old password check
+            var hasher = new PasswordHasher<User>();
+            var verifyResult = hasher.VerifyHashedPassword(user, user.PasswordHash, Password);
+
+            if (verifyResult == PasswordVerificationResult.Failed)
+            {
+                TempData["Error"] = "Invalid password.";
+                return Page();
+            }
+
+            HttpContext.Session.SetString("UserId", user.UserId.ToString());
+            HttpContext.Session.SetString("FullName", user.FullName);
+            HttpContext.Session.SetString("Role", user.Role);
+
+            if (user.Role == "Farmer")
+            {
+                return RedirectToAction("Index", "FarmProducts");
+            }
+            else if (user.Role == "Buyer")
+            {
+                return RedirectToAction("HomeUser", "Home"); 
+            }
             else
-
-                // Verify hashed password
-                if (user.PasswordHash != HashPassword(Password))
-                {
-                    TempData["Error"] = "Invalid password.";
-                    return Page();
-                }
-
-                else
-
-                {
-
-                    // Login successful — create session
-                    HttpContext.Session.SetString("UserId", user.UserId.ToString());
-                    HttpContext.Session.SetString("FullName", user.FullName);
-                    HttpContext.Session.SetString("Role", user.Role);
-
-                    if (user.Role == "Farmer")
-                    {
-                        //return RedirectToPage("Fame");
-                        return RedirectToAction("Index", "FarmProducts");
-                    }
-                    else if (user.Role == "Buyer")
-                    {
-                        return RedirectToPage("/view/User/Details");
-                    }
-                    else
-                    {
-                        // Handle unknown role
-                        TempData["Error"] = "Unknown user role.";
-                        return Page();
-                    }
-                }
-        }
-
-        private string HashPassword(string password)
-        {
-            using var sha256 = SHA256.Create();
-            var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-            return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+            {
+                TempData["Error"] = "Unknown user role.";
+                return Page();
+            }
         }
     }
 }

@@ -3,23 +3,82 @@
 <h2 class="text-center text-success fw-bold mb-4">Product Categories</h2>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
-    @foreach (var category in Model)
-    {
-        <div class="col">
-            <a asp-controller="ProductCategories"
-               asp-action="Details"
-               asp-route-id="@category.ProductCategoryId"
-               class="text-decoration-none text-dark">
-                <div class="card h-100 shadow-sm border-0 position-relative">
-                    <img src="~/images/default-category.jpg"
-                         class="card-img-top"
-                         style="height:150px; object-fit:cover;"
-                         alt="@category.CategoryName">
-                    <div class="card-img-overlay d-flex align-items-center justify-content-center">
-                        <h5 class="text-white fw-bold">@category.CategoryName</h5>
-                    </div>
+
+    <div class="col">
+        <a asp-controller="ProductCategories" asp-action="Details" asp-route-id="1" class="text-decoration-none text-dark">
+            <div class="card h-100 shadow-sm border-0 position-relative">
+                <img src="~/images/AssortedFriuts.jpg" class="card-img-top" style="height:150px; object-fit:cover;" alt="Fruits">
+                <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                    <h5 class="text-white fw-bold">Fruits</h5>
                 </div>
-            </a>
-        </div>
-    }
+            </div>
+        </a>
+    </div>
+
+    <div class="col">
+        <a asp-controller="ProductCategories" asp-action="Details" asp-route-id="2" class="text-decoration-none text-dark">
+            <div class="card h-100 shadow-sm border-0 position-relative">
+                <img src="~/images/Vegetables.jpg" class="card-img-top" style="height:150px; object-fit:cover;" alt="Vegetables">
+                <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                    <h5 class="text-white fw-bold">Vegetables</h5>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col">
+        <a asp-controller="ProductCategories" asp-action="Details" asp-route-id="3" class="text-decoration-none text-dark">
+            <div class="card h-100 shadow-sm border-0 position-relative">
+                <img src="~/images/herbs.jpg" class="card-img-top" style="height:150px; object-fit:cover;" alt="Herbs">
+                <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                    <h5 class="text-white fw-bold">Herbs</h5>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col">
+        <a asp-controller="ProductCategories" asp-action="Details" asp-route-id="4" class="text-decoration-none text-dark">
+            <div class="card h-100 shadow-sm border-0 position-relative">
+                <img src="~/images/Spices_Seasoning.jpg" class="card-img-top" style="height:150px; object-fit:cover;" alt="Spice & Seasoning">
+                <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                    <h5 class="text-white fw-bold">Spice & Seasoning</h5>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col">
+        <a asp-controller="ProductCategories" asp-action="Details" asp-route-id="5" class="text-decoration-none text-dark">
+            <div class="card h-100 shadow-sm border-0 position-relative">
+                <img src="~/images/ground-provisions.jpg" class="card-img-top" style="height:150px; object-fit:cover;" alt="Ground Provisons">
+                <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                    <h5 class="text-white fw-bold">Ground Provisions</h5>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col">
+        <a asp-controller="ProductCategories" asp-action="Details" asp-route-id="6" class="text-decoration-none text-dark">
+            <div class="card h-100 shadow-sm border-0 position-relative">
+                <img src="~/images/Prepared_Foods.jpg"class="card-img-top" style="height:150px; object-fit:cover;" alt="Honey & Preserves">
+                <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                    <h5 class="text-white fw-bold">Honey & Preserves</h5>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col">
+        <a asp-controller="ProductCategories" asp-action="Details" asp-route-id="7" class="text-decoration-none text-dark">
+            <div class="card h-100 shadow-sm border-0 position-relative">
+                <img src="~/images/foodprepared.jpg" class="card-img-top" style="height:150px; object-fit:cover;" alt="Prepared Food">
+                <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                    <h5 class="text-white fw-bold">Prepared Food</h5>
+                </div>
+            </div
+        </a>
+    </div>
+
 </div>

@@ -25,9 +25,10 @@
         <div class="carousel-item">
             <img src="~/images/Advertisement2.png" class="d-block w-100 hero-img" alt="Banner 2">
             <div class="carousel-caption d-none d-md-block">
-                <a href="#" class="btn btn-success">Explore Products</a>
+                <a asp-controller="Products" asp-action="Index" class="btn btn-success">Explore Products</a>
             </div>
         </div>
+
         <div class="carousel-item">
             <img src="~/images/Untitled_Artwork.jpg" class="d-block w-100 hero-img" alt="Banner 3">
             <div class="carousel-caption d-none d-md-block">
@@ -424,69 +425,76 @@
 <!--PRODUCT CATEGORY-->
 <section class="my-5">
     <div class="text-center mb-4">
-        <h2 class="text-success">Product Categories</h2>
+        <h2 class="text-success fw-bold">Product Categories</h2>
     </div>
 
     <div class="d-flex justify-content-evenly flex-wrap text-center">
 
-
-        <a asp-controller="Home" asp-action="ProductCategory" asp-route-category="Fruits" class="text-decoration-none text-dark">
+        <a asp-controller="ProductCategories" asp-action="Details" asp-route-id="1"
+           class="text-decoration-none text-dark">
             <div class="category-card">
-                <img src="~/images/AssortedFriuts.jpg" class="rounded-circle mx-auto d-block"
+                <img src="~/images/AssortedFriuts.jpg"
+                     class="rounded-circle mx-auto d-block"
                      style="width:80px; height:80px; object-fit:cover;" alt="Fruits">
                 <p class="mt-1 fw-bold">Fruits</p>
             </div>
         </a>
 
-
-        <a asp-controller="Home" asp-action="ProductCategory" asp-route-category="Vegetables" class="text-decoration-none text-dark">
+        <a asp-controller="ProductCategories" asp-action="Details" asp-route-id="2"
+           class="text-decoration-none text-dark">
             <div class="category-card">
-                <img src="~/images/Vegetables.jpg" class="rounded-circle mx-auto d-block"
+                <img src="~/images/Vegetables.jpg"
+                     class="rounded-circle mx-auto d-block"
                      style="width:80px; height:80px; object-fit:cover;" alt="Vegetables">
                 <p class="mt-1 fw-bold">Vegetables</p>
             </div>
         </a>
 
-
-        <a asp-controller="Home" asp-action="ProductCategory" asp-route-category="Herbs" class="text-decoration-none text-dark">
+        <a asp-controller="ProductCategories" asp-action="Details" asp-route-id="3"
+           class="text-decoration-none text-dark">
             <div class="category-card">
-                <img src="~/images/herbs.jpg" class="rounded-circle mx-auto d-block"
+                <img src="~/images/herbs.jpg"
+                     class="rounded-circle mx-auto d-block"
                      style="width:80px; height:80px; object-fit:cover;" alt="Herbs">
                 <p class="mt-1 fw-bold">Herbs</p>
             </div>
         </a>
 
-
-        <a asp-controller="Home" asp-action="ProductCategory" asp-route-category="Spices" class="text-decoration-none text-dark">
+        <a asp-controller="ProductCategories" asp-action="Details" asp-route-id="4"
+           class="text-decoration-none text-dark">
             <div class="category-card">
-                <img src="~/images/Spices_Seasoning.jpg" class="rounded-circle mx-auto d-block"
+                <img src="~/images/Spices_Seasoning.jpg"
+                     class="rounded-circle mx-auto d-block"
                      style="width:80px; height:80px; object-fit:cover;" alt="Spices & Seasoning">
                 <p class="mt-1 fw-bold">Spices & Seasoning</p>
             </div>
         </a>
 
-
-        <a asp-controller="Home" asp-action="ProductCategory" asp-route-category="Ground Provisions" class="text-decoration-none text-dark">
+        <a asp-controller="ProductCategories" asp-action="Details" asp-route-id="5"
+           class="text-decoration-none text-dark">
             <div class="category-card">
-                <img src="~/images/ground-provisions.jpg" class="rounded-circle mx-auto d-block"
+                <img src="~/images/ground-provisions.jpg"
+                     class="rounded-circle mx-auto d-block"
                      style="width:80px; height:80px; object-fit:cover;" alt="Ground Provisions">
                 <p class="mt-1 fw-bold">Ground Provisions</p>
             </div>
         </a>
 
-
-        <a asp-controller="Home" asp-action="ProductCategory" asp-route-category="Honey & Preserves" class="text-decoration-none text-dark">
+        <a asp-controller="ProductCategories" asp-action="Details" asp-route-id="6"
+           class="text-decoration-none text-dark">
             <div class="category-card">
-                <img src="~/images/Prepared_Foods.jpg" class="rounded-circle mx-auto d-block"
+                <img src="~/images/Prepared_Foods.jpg"
+                     class="rounded-circle mx-auto d-block"
                      style="width:80px; height:80px; object-fit:cover;" alt="Honey & Preserves">
                 <p class="mt-1 fw-bold">Honey & Preserves</p>
             </div>
         </a>
 
-
-        <a asp-controller="Home" asp-action="ProductCategory" asp-route-category="Prepared Foods" class="text-decoration-none text-dark">
+        <a asp-controller="ProductCategories" asp-action="Details" asp-route-id="7"
+           class="text-decoration-none text-dark">
             <div class="category-card">
-                <img src="~/images/Spices_Seasoning.jpg" class="rounded-circle mx-auto d-block"
+                <img src="~/images/Prepared_Foods.jpg"
+                     class="rounded-circle mx-auto d-block"
                      style="width:80px; height:80px; object-fit:cover;" alt="Prepared Foods">
                 <p class="mt-1 fw-bold">Prepared Foods</p>
             </div>
@@ -494,7 +502,6 @@
 
     </div>
 </section>
-
 
 @section Scripts {
     <script>

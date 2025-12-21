@@ -128,11 +128,6 @@ namespace AgriReachWeb.Controllers
             return View(user);
         }
 
-        [HttpPost]
-        public IActionResult Logout()
-        {
-            HttpContext.Session.Clear();
-            return RedirectToAction("Index", "Home");
-        }
+        
     }
 }

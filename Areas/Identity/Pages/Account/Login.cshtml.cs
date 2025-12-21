@@ -64,17 +64,17 @@ namespace AgriReachWeb.Pages.Account.LoginModel
                     HttpContext.Session.SetString("FullName", user.FullName);
                     HttpContext.Session.SetString("Role", user.Role);
 
-                    if (user.Role == "Farmer")
-                    {
-                        //return RedirectToPage("Fame");
-                        return RedirectToAction("Index", "FarmProducts");
-                    }
-                    else if (user.Role == "Buyer")
-                    {
-                        return RedirectToPage("/view/User/Details");
-                    }
-                    else
-                    {
+                if (user.Role == "Farmer")
+                {
+                    return RedirectToAction("FarmerDashboard", "Home");
+                }
+                else if (user.Role == "Buyer")
+                {
+                    return RedirectToAction("HomeUser", "Home");
+                }
+
+                else
+                {
                         // Handle unknown role
                         TempData["Error"] = "Unknown user role.";
                         return Page();

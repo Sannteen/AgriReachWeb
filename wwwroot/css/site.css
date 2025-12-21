@@ -119,3 +119,35 @@ body {
     display: block;
     margin-top: 0;
 }
+
+.agrireach-footer {
+    background: linear-gradient(135deg, #198754, #157347);
+    color: #ffffff;
+}
+
+    .agrireach-footer a {
+        color: rgba(255, 255, 255, 0.85);
+        text-decoration: none;
+        transition: all 0.2s ease-in-out;
+    }
+
+        .agrireach-footer a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+    .agrireach-footer h6 {
+        letter-spacing: 0.05em;
+    }
+
+.social-icon {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+    .social-icon:hover {
+        color: #ffffff;
+        transform: translateY(-2px);
+    }
+

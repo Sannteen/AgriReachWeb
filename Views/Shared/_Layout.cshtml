@@ -131,13 +131,99 @@
             @RenderBody()
         </main>
     </div>
+    
+    <footer class="agrireach-footer mt-5">
+        <div class="container py-5">
+            <div class="row gy-4">
 
-    <footer class="border-top footer text-muted">
+                <!-- Brand -->
+                <div class="col-md-4">
+                    <h4 class="fw-bold mb-3">AgriReach</h4>
+                    <p class="small opacity-75">
+                        Bridging the gap between farmers and buyers by providing
+                        access to fresh, locally grown agricultural products.
+                    </p>
+                </div>
+
+                <!-- Explore -->
+                <div class="col-md-2">
+                    <h6 class="text-uppercase fw-semibold mb-3">Explore</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="mb-2">
+                            <a asp-controller="Products" asp-action="Index">Products</a>
+                        </li>
+                        <li class="mb-2">
+                            <a asp-controller="ProductCategories" asp-action="Index">Categories</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div class="col-md-3">
+                    <h6 class="text-uppercase fw-semibold mb-3">Support</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a asp-controller="Home" asp-action="Contact">Contact Us</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#">FAQs</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-md-3">
+                    <h6 class="text-uppercase fw-semibold mb-3">Get in Touch</h6>
+                    <p class="small mb-2">
+                        <i class="fas fa-envelope me-2"></i> support@agrireach.com
+                    </p>
+                    <p class="small mb-2">
+                        <i class="fas fa-phone me-2"></i> +1 (876) 555-1234
+                    </p>
+                    <p class="small">
+                        <i class="fas fa-map-marker-alt me-2"></i> Jamaica
+                    </p>
+                </div>
+
+            </div>
+
+            <hr class="border-light opacity-25 my-4">
+
+            <!-- Bottom bar -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center small opacity-75">
+                <span>
+                    © @DateTime.Now.Year AgriReach. All rights reserved.
+                </span>
+
+                <div class="mt-3 mt-md-0">
+                    <a href="#" class="me-3 social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="me-3 social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+   @*  <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2025 - AgriReachWeb -
             <a asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer> *@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

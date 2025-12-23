@@ -33,7 +33,7 @@ namespace AgriReachWeb.Controllers
             // Check if user is logged in
             if (User.Identity != null && User.Identity.IsAuthenticated)
             {
-                return View("HomeUser"); // for when user become a customer and login in 
+                return View("HomeUser"); // for when user become a buyer and login in 
             }
 
             return View(); // Default  for guests

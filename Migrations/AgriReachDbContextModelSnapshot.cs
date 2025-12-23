@@ -247,6 +247,10 @@ namespace AgriReachWeb.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 0)");
 
@@ -285,9 +289,6 @@ namespace AgriReachWeb.Migrations
                     b.Property<int>("ProductCategoryId")
                         .HasColumnType("int")
                         .HasColumnName("ProductCategoryID");
-
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductCategoryName")
                         .IsRequired()

@@ -1,0 +1,47 @@
+﻿@model List<AgriReachWeb.Models.ShoppingListItem>
+
+@{
+    ViewData["Title"] = "Shopping Bag";
+    decimal grandTotal = 0;
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (!Model.Any())
+{
+    <p>Your shopping bag is empty.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price per unit</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                var total = item.Quantity * item.Product.Price; // assuming Product has a Price property
+                grandTotal += total;
+                <tr>
+                    <td>@item.Product.ProductId</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Product.Price.ToString("C")</td>
+                    <td>@total.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-end"><strong>Grand Total:</strong></td>
+                <td><strong>@grandTotal.ToString("C")</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+

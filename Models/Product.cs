@@ -20,6 +20,9 @@ public partial class Product
 
     public string Produces { get; set; } = null!;
 
+    public string ImagePath { get; set; } = string.Empty;
+
+
     public virtual ICollection<FarmProduct> FarmProducts { get; set; } = new List<FarmProduct>();
 
     public virtual ProductCategory ProductCategory { get; set; } = null!;

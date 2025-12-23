@@ -30,18 +30,23 @@ namespace AgriReachWeb.Controllers
             }
 
             var products = productsQuery
-                .Select(fp => new ProductListVM
-                {
-                    ProductName = fp.Product.ProductName,
-                    Price = fp.BasePrice ?? fp.Product.Price,
-                    Unit = fp.Unit ?? fp.Product.Unit,
-                    FarmName = fp.Farm.FarmName,
-                    AvailabilityStatus = fp.AvailabilityStatus
-                })
-                .ToList();
+            .Select(fp => new ProductListVM
+            {
+                ProductId = fp.ProductId, 
+                ProductName = fp.Product.ProductName,
+                Price = fp.BasePrice ?? fp.Product.Price,
+                Unit = fp.Unit ?? fp.Product.Unit,
+                FarmName = fp.Farm.FarmName,
+                AvailabilityStatus = fp.AvailabilityStatus
+            })
+            .ToList();
+
 
             return View(products);
         }
+
+        
+
 
     }
 }

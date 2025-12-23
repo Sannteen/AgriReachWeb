@@ -56,24 +56,28 @@
         <!-- PRODUCT 1 -->
         <div class="col">
             <div class="card h-100 shadow-sm border-0">
-                <img src="~/images/scotch bonnet peppers.jpg" class="card-img-top" style="height:140px; object-fit:cover;" alt="Scotch Bonnet">
+                <img src="~/images/scotch bonnet peppers.jpg" class="card-img-top" style="height:140px; object-fit:cover;" alt="Scotch Bonnet Pepers">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">Scotch Bonnet Peppers</h5>
                     <p class="text-success fw-bold fs-6">J$1,000 / lb</p>
                     <small class="text-muted mb-3">by Marie's Farm, St. Elizabeth</small>
-                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                     <div class="d-flex justify-content-between align-items-center mt-auto">
                         <div class="input-group input-group-sm" style="width:100px;">
-                            <button class="btn btn-outline-secondary btn-sm" type="button" onclick="decreaseQty(this)">-</button>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="decreaseQty(this)">-</button>
                             <input type="text" class="form-control text-center qty-input" value="1">
-                            <button class="btn btn-outline-secondary btn-sm" type="button" onclick="increaseQty(this)">+</button>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="increaseQty(this)">+</button>
                         </div>
-                        <button class="btn btn-success btn-sm" onclick="addToCart('Scotch Bonnet Peppers', this)">
-                            <i class="bi bi-bag"></i>
-                        </button>
+
+                        <div class="d-flex gap-1">
+                            <button class="btn btn-success btn-sm" onclick="addToCart('Scotch Bonnet Peppers', this)"><i class="bi bi-bag"></i></button>
+
+                            <button class="btn btn-danger btn-sm" onclick="removeFromCart('Scotch Bonnet Peppers', this)" disabled><i class="bi bi-trash"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <!-- PRODUCT 2 -->
         <div class="col">
@@ -89,9 +93,10 @@
                             <input type="text" class="form-control text-center qty-input" value="1">
                             <button class="btn btn-outline-secondary btn-sm" type="button" onclick="increaseQty(this)">+</button>
                         </div>
-                        <button class="btn btn-success btn-sm" onclick="addToCart('Pak Choi', this)">
-                            <i class="bi bi-bag"></i>
-                        </button>
+                        <div class="d-flex gap-1">
+                        <button class="btn btn-success btn-sm" onclick="addToCart('Pak Choi', this)"><i class="bi bi-bag"></i></button>
+                        <button class="btn btn-danger btn-sm" onclick="removeFromCart('Pak Choi, this)" disabled><i class="bi bi-trash"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -111,9 +116,10 @@
                             <input type="text" class="form-control text-center qty-input" value="1">
                             <button class="btn btn-outline-secondary btn-sm" type="button" onclick="increaseQty(this)">+</button>
                         </div>
-                        <button class="btn btn-success btn-sm" onclick="addToCart('Fresh Pineapples', this)">
-                            <i class="bi bi-bag"></i>
-                        </button>
+                        <div class="d-flex gap-1"> 
+                        <button class="btn btn-success btn-sm" onclick="addToCart('Fresh Pineapples', this)"><i class="bi bi-bag"></i></button>
+                        <button class="btn btn-danger btn-sm" onclick="removeFromCart('Pineapples, this)" disabled><i class="bi bi-trash"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -133,9 +139,10 @@
                             <input type="text" class="form-control text-center qty-input" value="1">
                             <button class="btn btn-outline-secondary btn-sm" type="button" onclick="increaseQty(this)">+</button>
                         </div>
-                        <button class="btn btn-success btn-sm" onclick="addToCart('Organic Carrots', this)">
-                            <i class="bi bi-bag"></i>
-                        </button>
+                        <div class="d-flex gap-1">
+                        <button class="btn btn-success btn-sm" onclick="addToCart('Organic Carrots', this)"><i class="bi bi-bag"></i></button>
+                        <button class="btn btn-danger btn-sm" onclick="removeFromCart('Orangic Carrots, this)" disabled><i class="bi bi-trash"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -155,9 +162,10 @@
                             <input type="text" class="form-control text-center qty-input" value="1">
                             <button class="btn btn-outline-secondary btn-sm" type="button" onclick="increaseQty(this)">+</button>
                         </div>
-                        <button class="btn btn-success btn-sm" onclick="addToCart('Red Tomatoes', this)">
-                            <i class="bi bi-bag"></i>
-                        </button>
+                        <div class="d-flex gap-1">
+                        <button class="btn btn-success btn-sm" onclick="addToCart('Red Tomatoes', this)"><i class="bi bi-bag"></i></button>
+                        <button class="btn btn-danger btn-sm" onclick="removeFromCart('Red Tomatoes, this)" disabled><i class="bi bi-trash"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -177,9 +185,10 @@
                             <input type="text" class="form-control text-center qty-input" value="1">
                             <button class="btn btn-outline-secondary btn-sm" type="button" onclick="increaseQty(this)">+</button>
                         </div>
-                        <button class="btn btn-success btn-sm" onclick="addToCart('Green Cabbage', this)">
-                            <i class="bi bi-bag"></i>
-                        </button>
+                        <div class="d-flex gap-1">
+                        <button class="btn btn-success btn-sm" onclick="addToCart('Green Cabbage', this)"><i class="bi bi-bag"></i></button>
+                        <button class="btn btn-danger btn-sm" onclick="removeFromCart('Green Cabbage, this)" disabled><i class="bi bi-trash"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -199,9 +208,10 @@
                             <input type="text" class="form-control text-center qty-input" value="1">
                             <button class="btn btn-outline-secondary btn-sm" type="button" onclick="increaseQty(this)">+</button>
                         </div>
-                        <button class="btn btn-success btn-sm" onclick="addToCart('Fresh Bananas', this)">
-                            <i class="bi bi-bag"></i>
-                        </button>
+                        <div class="d-flex gap-1">
+                        <button class="btn btn-success btn-sm" onclick="addToCart('Fresh Bananas', this)"><i class="bi bi-bag"></i></button>
+                        <button class="btn btn-danger btn-sm" onclick="removeFromCart('Fresh Bananas, this)" disabled><i class="bi bi-trash"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -221,9 +231,10 @@
                             <input type="text" class="form-control text-center qty-input" value="1">
                             <button class="btn btn-outline-secondary btn-sm" type="button" onclick="increaseQty(this)">+</button>
                         </div>
-                        <button class="btn btn-success btn-sm" onclick="addToCart('Eggplants', this)">
-                            <i class="bi bi-bag"></i>
-                        </button>
+                        <div class="d-flex gap-1">
+                        <button class="btn btn-success btn-sm" onclick="addToCart('Eggplants', this)"><i class="bi bi-bag"></i></button>
+                        <button class="btn btn-danger btn-sm" onclick="removeFromCart('Eggplants, this)" disabled><i class="bi bi-trash"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -258,9 +269,10 @@
                             <input type="text" class="form-control text-center qty-input" value="1">
                             <button class="btn btn-outline-secondary btn-sm" type="button" onclick="increaseQty(this)">+</button>
                         </div>
-                        <button class="btn btn-success btn-sm" onclick="addToCart('Lychee', this)">
-                            <i class="bi bi-bag"></i>
-                        </button>
+                        <div class="d-flex gap-1">
+                        <button class="btn btn-success btn-sm" onclick="addToCart('Lychee', this)"><i class="bi bi-bag"></i></button>
+                        <button class="btn btn-danger btn-sm" onclick="removeFromCart('Lychee, this)" disabled><i class="bi bi-trash"></i></button>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -279,9 +291,10 @@
                             <input type="text" class="form-control text-center qty-input" value="1">
                             <button class="btn btn-outline-secondary btn-sm" type="button" onclick="increaseQty(this)">+</button>
                         </div>
-                        <button class="btn btn-success btn-sm" onclick="addToCart('Mango', this)">
-                            <i class="bi bi-bag"></i>
-                        </button>
+                        <div class="d-flex gap-1">
+                        <button class="btn btn-success btn-sm" onclick="addToCart('Mango', this)"><i class="bi bi-bag"></i></button>
+                            <button class="btn btn-danger btn-sm" onclick="removeFromCart('Mango, this)" disabled><i class="bi bi-trash"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -294,19 +307,21 @@
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-success">June Plum</h5>
                     <small class="text-muted mb-3">by Oak Tree Farm</small>
-                    <div class="d-flex justify-content-between align-items-center mt-auto">
-                        <div class="input-group input-group-sm" style="width:100px;">
+                     <div class="d-flex justify-content-between align-items-center mt-auto">
+                           <div class="input-group input-group-sm" style="width:100px;">
                             <button class="btn btn-outline-secondary btn-sm" type="button" onclick="decreaseQty(this)">-</button>
                             <input type="text" class="form-control text-center qty-input" value="1">
                             <button class="btn btn-outline-secondary btn-sm" type="button" onclick="increaseQty(this)">+</button>
+                        </div>                        
+                        <div class="d-flex gap-1">
+                            <button class="btn btn-success btn-sm" onclick="addToCart('June Plum', this)"><i class="bi bi-bag"></i> </button>
+                            <button class="btn btn-danger btn-sm" onclick="removeFromCart('June Plum', this)" disabled><i class="bi bi-trash"></i></button>
                         </div>
-                        <button class="btn btn-success btn-sm" onclick="addToCart('June Plum', this)">
-                            <i class="bi bi-bag"></i>
-                        </button>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <!-- Papaya -->
         <div class="col">
@@ -321,9 +336,10 @@
                             <input type="text" class="form-control text-center qty-input" value="1">
                             <button class="btn btn-outline-secondary btn-sm" type="button" onclick="increaseQty(this)">+</button>
                         </div>
-                        <button class="btn btn-success btn-sm" onclick="addToCart('Papaya', this)">
-                            <i class="bi bi-bag"></i>
-                        </button>
+                        <div class="d-flex gap-1">
+                        <button class="btn btn-success btn-sm" onclick="addToCart('Papaya', this)"><i class="bi bi-bag"></i></button>
+                        <button class="btn btn-danger btn-sm" onclick="removeFromCart('Papaya', this)" disabled><i class="bi bi-trash"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -493,7 +509,7 @@
         <a asp-controller="ProductCategories" asp-action="Details" asp-route-id="7"
            class="text-decoration-none text-dark">
             <div class="category-card">
-                <img src="~/images/Prepared_Foods.jpg"
+                <img src="~/images/foodprepared.jpg"
                      class="rounded-circle mx-auto d-block"
                      style="width:80px; height:80px; object-fit:cover;" alt="Prepared Foods">
                 <p class="mt-1 fw-bold">Prepared Foods</p>
@@ -505,6 +521,10 @@
 
 @section Scripts {
     <script>
+        // Cart storage (productName -> quantity)
+        const cart = {};
+        let cartItemCount = 0;
+
         function increaseQty(btn) {
             const input = btn.parentElement.querySelector('.qty-input');
             input.value = parseInt(input.value) + 1;
@@ -512,13 +532,51 @@
 
         function decreaseQty(btn) {
             const input = btn.parentElement.querySelector('.qty-input');
-            if (parseInt(input.value) > 1) input.value = parseInt(input.value) - 1;
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
         }
 
         function addToCart(productName, btn) {
-            const qty = btn.parentElement.querySelector('.qty-input').value;
-            // added to cart
-            alert(qty + " " + productName + " added to cart!");
+            const card = btn.closest('.card');
+            const qty = parseInt(card.querySelector('.qty-input').value);
+
+            // update cart
+            cart[productName] = (cart[productName] || 0) + qty;
+            cartItemCount += qty;
+
+            alert(
+                qty + " " + productName + " added to cart.\n" +
+                "Total items in cart: " + cartItemCount
+            );
+
+            // enable delete button
+            const deleteBtn = card.querySelector('.btn-danger');
+            if (deleteBtn) {
+                deleteBtn.disabled = false;
+            }
+        }
+
+        function removeFromCart(productName, btn) {
+            if (!cart[productName]) {
+                alert("This product is not in the cart.");
+                return;
+            }
+
+            const removedQty = cart[productName];
+            cartItemCount = Math.max(0, cartItemCount - removedQty);
+
+            delete cart[productName];
+
+            alert(
+                productName + " removed from cart.\n" +
+                "Total items in cart: " + cartItemCount
+            );
+
+            // disable delete button
+            btn.disabled = true;
         }
     </script>
 }
+
+
